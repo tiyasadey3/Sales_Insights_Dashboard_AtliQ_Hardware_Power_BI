@@ -173,9 +173,14 @@ Shows reports from Sales insights :
 
 ![sales insights_1st page](https://user-images.githubusercontent.com/73987736/236303016-a83c4d9e-996e-4253-937f-670580ae59fa.png)
 
-# Performence Insights:
+# Performence Insights(2020):
 
 ![sales insights_performence](https://user-images.githubusercontent.com/73987736/236303303-5d9bbad8-3d49-4253-91e0-4ede0177ae40.png)
+
+# AtliQ Hardware Sales Insights Report/Dashboard Mobile View :
+
+![sales insight mobile view](https://user-images.githubusercontent.com/73987736/236308272-4ee90e55-a4e9-41e9-8224-f47c1481fa0a.png)
+
 
 # References :
 
