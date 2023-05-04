@@ -64,3 +64,115 @@ Download the sql database file in our local computer
 
 Importing Data to MySQL workbench
 
+![sql data import](https://user-images.githubusercontent.com/73987736/236294160-8bfed34f-14c9-47bb-8e68-1254aa78868b.png)
+
+Performed Different SQL query on data base for analyze the database :
+
+1.To find of all customers records
+
+SELECT * FROM sales.customers;
+
+2.To find total number of customers
+
+SELECT count(*) From sales.customers;
+
+3.To find transactions for Chennai market (market code for chennai is Mark001
+
+SELECT * FROM sales.transactions where market_code='Mark001';
+
+4.To find distrinct product codes that were sold in chennai
+
+SELECT distinct product_code FROM sales.transactions where market_code='Mark001';
+
+5.To find transactions for Chennai market (market code for chennai is Mark002
+
+SELECT * FROM sales.transactions where market_code='Mark002';
+
+6.To find distrinct product codes that were sold in mumbai
+
+SELECT distinct product_code FROM sales.transactions where market_code='Mark002';
+
+7.To find transactions where currency is US dollars
+
+SELECT * from sales.transactions where currency="USD";
+
+8.To find transactions in 2020 join by date table
+
+SELECT sales.transactions.*, sales.date.* FROM sales.transactions INNER JOIN sales.date ON sales.transactions.order_date=sales.date.date where sales.date.year=2020;
+
+9.To find total revenue in year 2020,
+
+SELECT SUM(sales.transactions.sales_amount) FROM sales.transactions INNER JOIN sales.date ON sales.transactions.order_date=sales.date.date where sales.date.year=2020 and sales.transactions.currency="INR\r" or sales.transactions.currency="USD\r";
+
+10.To find total revenue in year 2020, January Month,
+
+SELECT SUM(sales.transactions.sales_amount) FROM sales.transactions INNER JOIN sales.date ON sales.transactions.order_date=sales.date.date where sales.date.year=2020 and sales.date.month_name="January" and (sales.transactions.currency="INR\r" or sales.transactions.currency="USD\r");
+
+11.To find total revenue in year 2020 in Chennai
+
+SELECT SUM(sales.transactions.sales_amount) FROM sales.transactions INNER JOIN sales.date ON sales.transactions.order_date=sales.date.date where sales.date.year=2020 and sales.transactions.market_code="Mark001";
+
+# Data Cleaning and ETL (Extract, Transform, Load):
+
+In power BI performed ETL and data cleaning operations to make it ready so that we can build our dashboard.
+
+Extracted Data from mySQL database to Power BI
+
+Transformed Data Using Power Query (done do currency normalization, handle invalid values, etc.)
+
+Loaded transformed data into Power BI
+
+# Data Modeling:
+
+And then dataset was cleaned and transformed, it was ready to the data modeled.
+
+The sales insights data model as show below :
+
+![data model_sales insights](https://user-images.githubusercontent.com/73987736/236299485-cac925bb-c878-4df6-95fb-5ca6ead1ff0a.png)
+
+# Data Analysis Using Power BI (DAX):
+
+Measures used in all visualization are:
+
+Key Measures:
+
+Profit Margin % = DIVIDE([Total Profit Margin],[Revenue],0)
+Profit Margin Contribution % = DIVIDE([Total Profit Margin],CALCULATE([Total Profit Margin],ALL('sales products'),ALL('sales customers'),ALL('sales markets')))
+Revenue = SUM('sales transactions'[sales_amount])
+Revenue Contribution % = DIVIDE([Revenue],CALCULATE([Revenue],ALL('sales products'),ALL('sales customers'),ALL('sales markets')))
+Revenue LY = CALCULATE([Revenue],SAMEPERIODLASTYEAR('sales date'[date]))
+sales quntity = SUM('sales transactions'[sales_qty])
+Total Profit Margin = SUM('Sales transactions'[Profit_Margin])
+
+Profit Targets:
+
+Profit Target1 = GENERATESERIES(-0.05, 0.15, 0.01)
+Profit Target Value = SELECTEDVALUE('Profit Target1'[Profit Target])
+Target Diff = [Profit Margin %]-'Profit Target1'[Profit Target Value]
+
+# Build Dashboard/Report:
+
+Build a powerful dashboard in Microsoft Power BI that can help us generate sales insights on the Atliq hardware business. 
+
+Shows reports from Sales insights :
+
+# key Insights :
+
+![sales insights_key](https://user-images.githubusercontent.com/73987736/236302739-208e95be-6095-4b4d-9b4d-c4959faea588.png)
+
+# Profit Analysis: 
+
+![sales insights_1st page](https://user-images.githubusercontent.com/73987736/236303016-a83c4d9e-996e-4253-937f-670580ae59fa.png)
+
+# Performence Insights:
+
+![sales insights_performence](https://user-images.githubusercontent.com/73987736/236303303-5d9bbad8-3d49-4253-91e0-4ede0177ae40.png)
+
+# References :
+
+Codebasics Youtube channel : https://youtu.be/hhZ62IlTxYs
+
+
+
+
+
